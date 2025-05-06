@@ -1,13 +1,18 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./Header";
 import "./app.css";
 
 export default function App() {
   return (
-    <>
-      <HomePage/>
-      <RemoteProducts/>
-      <RemoteCart/>
-    </>
+    <BrowserRouter>
+      <Header/>
+      <Routes>
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/products/*" element={<RemoteProducts/>}/>
+        <Route path="/cart" element={<RemoteCart/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
