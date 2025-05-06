@@ -1,14 +1,6 @@
 const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
-  mode: "development",
-  devServer: {
-    port: 3001,
-    historyApiFallback: true,
-  },
-  output: {
-    publicPath: "auto",
-  },
   module: {
     rules: [
       {
@@ -43,18 +35,15 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "products",
+      name: "cart",
       filename: "remoteEntry.js",
       exposes: {
-        "./Products": "./src/Products.jsx",
-      },
-      remotes: {
-        cart: "cart@http://localhost:3002/remoteEntry.js",
+        "./Cart": "./src/Cart.jsx",
+        "./CartContext": "./src/CartContext.jsx",
       },
       shared: {
         react: { singleton: true },
         "react-dom": { singleton: true },
-        "react-router-dom": { singleton: true },
       },
     }),
   ],
